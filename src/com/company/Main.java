@@ -1,20 +1,38 @@
 package com.company;
 
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 
-public class Main {
+import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
-    public static void main(String[] args) {
-        while (true) {
-            update();
-            draw();
+import java.io.File;
+import java.net.URL;
+
+public class Main extends Application {
+    private Scene scene;
+    private BorderPane root;
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        try {
+
+            FXMLLoader loader = new FXMLLoader();
+            URL url = new File("src/com/company/view/MapView.fxml").toURI().toURL();
+            loader.setLocation(url);
+            System.out.println(loader.getLocation());
+            BorderPane root = new BorderPane();
+            root = loader.load();
+            this.scene = new Scene(root, 1500, 800);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
-    private static void update() {
-
-    }
-
-    private static void draw() {
-
+    public static void main(String[] args) {
+        launch(args);
     }
 }
