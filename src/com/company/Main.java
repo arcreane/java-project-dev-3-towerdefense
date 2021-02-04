@@ -32,7 +32,16 @@ public class Main extends Application {
         }
     }
 
+
     public static void main(String[] args) {
         launch(args);
+
+    }
+
+    private static void update() {
+
+    }
+
+    private static void draw() {
     }
 }
