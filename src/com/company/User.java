@@ -16,17 +16,17 @@ public class User {
     /**
      * 
      */
-    public void HP;
+    public int HP;
 
     /**
      * 
      */
-    public void money;
+    public int money;
 
     /**
      * 
      */
-    public void pseudo;
+    public String pseudo;
 
 
 }

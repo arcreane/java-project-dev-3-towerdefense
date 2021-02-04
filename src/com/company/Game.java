@@ -16,32 +16,32 @@ public class Game {
     /**
      * 
      */
-    public void difficulty;
+    public String difficulty;
 
     /**
      * 
      */
-    public void level;
+    public int level;
 
     /**
      * 
      */
-    public void phase;
+    public int phase;
 
     /**
      * 
      */
-    public void worth;
+    public int worth;
 
     /**
      * 
      */
-    public void range;
+    public int range;
 
     /**
      * 
      */
-    public void speed;
+    public int speed;
 
 
 

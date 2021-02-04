@@ -3,7 +3,7 @@ package com.company;
 import java.util.*;
 
 /**
- * 
+ *
  */
 public class Cac {
 
@@ -14,34 +14,34 @@ public class Cac {
     }
 
     /**
-     * 
+     *
      */
-    public void HP;
+    public int HP;
 
     /**
-     * 
+     *
      */
-    public void AD;
+    public int AD;
 
     /**
-     * 
+     *
      */
-    public void type;
+    public String type;
 
     /**
-     * 
+     *
      */
-    public void worth;
+    public int worth;
 
     /**
-     * 
+     *
      */
-    public void range;
+    public int range;
 
     /**
-     * 
+     *
      */
-    public void speed;
+    public int speed;
 
 
 }

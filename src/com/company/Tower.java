@@ -16,22 +16,22 @@ public class Tower {
     /**
      * 
      */
-    public void AD;
+    public int AD;
 
     /**
      * 
      */
-    public void worth;
+    public int worth;
 
     /**
      * 
      */
-    public void range;
+    public int range;
 
     /**
      * 
      */
-    public void AS;
+    public int AS;
 
 
     /**
