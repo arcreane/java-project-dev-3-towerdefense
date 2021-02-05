@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -22,11 +23,14 @@ public class Main extends Application {
             URL url = new File("src/com/company/view/MapView.fxml").toURI().toURL();
             loader.setLocation(url);
             System.out.println(loader.getLocation());
-            BorderPane root = new BorderPane();
-            root = loader.load();
-            this.scene = new Scene(root, 1500, 800);
-            primaryStage.setScene(scene);
+            this.root = new BorderPane();
+            this.root.getChildren().add(loader.load());
+
+            this.scene = new Scene(this.root, 1500, 800);
+            primaryStage.setTitle("8bitTowerDefenseUltraEditionFightUltimateAlpha");
+            primaryStage.setScene(this.scene);
             primaryStage.show();
+            this.startGameLoop(this.root);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -35,7 +39,10 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
+    }
 
+    private void startGameLoop(BorderPane pane) {
+        Units mage = new Units(pane, "mage");
     }
 
     private static void update() {
