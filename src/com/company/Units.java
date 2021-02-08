@@ -19,6 +19,43 @@ public class Units {
     private int dmg;
     private int speed;
     private int worth;
+    private int positionX;
+    private int positionY;
+    private ImageView imageView;
+    private BorderPane pane;
+
+    public Units(BorderPane pane, int locationX, int locationY, String type) {
+
+        switch (type) {
+            case "mage":
+                this.constructMage(type);
+                break;
+            case "war":
+                this.constructWar(type);
+                break;
+            case "rogue":
+                this.constructRogue(type);
+                break;
+        }
+
+        this.addToPane(pane, locationX, locationY);
+    }
+
+    public ImageView getImageView() {
+        return imageView;
+    }
+
+    public void setImageView(ImageView imageView) {
+        this.imageView = imageView;
+    }
+
+    public BorderPane getPane() {
+        return pane;
+    }
+
+    public void setPane(BorderPane pane) {
+        this.pane = pane;
+    }
 
     public Image getAssets() {
         return assets;
@@ -68,28 +105,16 @@ public class Units {
         this.worth = worth;
     }
 
-    public Units(BorderPane pane, String type) {
-
-        switch (type) {
-            case "mage":
-                this.constructMage(type);
-                break;
-            case "war":
-                this.constructWar(type);
-                break;
-            case "rogue":
-                this.constructRogue(type);
-                break;
-        }
-
-        this.addToPane(pane);
-    }
-
-    private void addToPane(BorderPane pane) {
-        ImageView imageView = new ImageView(this.getAssets());
-        imageView.relocate(0, 0);
-        imageView.setRotate(0);
+    private void addToPane(BorderPane pane, int locationX, int locationY) {
+        this.setImageView(new ImageView(this.getAssets()));
+        this.getImageView().relocate(locationX, locationY);
+        this.getImageView().setRotate(0);
         pane.getChildren().add(imageView);
+
+        //Store info
+        this.setPositionX(locationX);
+        this.setPositionY(locationY);
+        this.setPane(pane);
 
     }
 
@@ -131,7 +156,41 @@ public class Units {
      *
      */
     public void move() {
+        int X = this.getPositionX();
+        int Y = this.getPositionY();
+
+        if (X > 900) {                                  //←
+            this.setPositionX(X - this.getSpeed());
+        } else if (Y < 650 && (X <= 900 && X > 650)) {  //↓
+            this.setPositionY(Y + this.getSpeed());
+        } else if (Y >= 650 && X > 650) {               //←
+            this.setPositionX(X - this.getSpeed());
+        } else if (X <= 650 && Y > 450) {               //↑
+            this.setPositionY(Y - this.getSpeed());
+        } else if (Y <= 450 && X > 375) {               //←
+            this.setPositionX(X - this.getSpeed());
+        } else if (X <= 375 && Y > 220) {               //↑
+            this.setPositionY(Y - this.getSpeed());
+        } else {                                        //←
+            this.setPositionX(X - this.getSpeed());
+        }
+        this.getImageView().relocate(this.getPositionX(), this.getPositionY());
 
     }
 
+    public int getPositionY() {
+        return positionY;
+    }
+
+    public void setPositionY(int positionY) {
+        this.positionY = positionY;
+    }
+
+    public int getPositionX() {
+        return positionX;
+    }
+
+    public void setPositionX(int positionX) {
+        this.positionX = positionX;
+    }
 }
