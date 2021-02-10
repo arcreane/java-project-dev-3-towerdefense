@@ -47,6 +47,7 @@ public class Main extends Application {
     private void startGameLoop(BorderPane pane) {
         final long[] lastTimer = {System.currentTimeMillis()};
         final int[] countLoop = {0};
+        User user = new User(200);
 
         AnimationTimer gameLoop = new AnimationTimer() {
 
@@ -61,7 +62,9 @@ public class Main extends Application {
                 }
 
 
-                enemies.forEach(Units::move);
+                enemies.forEach(enemy ->{
+                    enemy.move();
+                });
 
             }
 

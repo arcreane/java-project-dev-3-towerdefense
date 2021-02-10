@@ -154,10 +154,12 @@ public class Units {
 
     /**
      *
+     * @return
      */
-    public void move() {
+    public int move() {
         int X = this.getPositionX();
         int Y = this.getPositionY();
+        int dmg = 0;
 
         if (X > 900) {                                  //←
             this.setPositionX(X - this.getSpeed());
@@ -173,9 +175,10 @@ public class Units {
             this.setPositionY(Y - this.getSpeed());
         } else {                                        //←
             this.setPositionX(X - this.getSpeed());
+            dmg = this.getDmg();
         }
         this.getImageView().relocate(this.getPositionX(), this.getPositionY());
-
+        return dmg;
     }
 
     public int getPositionY() {
