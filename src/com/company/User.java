@@ -89,11 +89,19 @@ public class User {
 
     public void buyTower(int price)
     {
-        int newMoney = this.getMoney() - price;
-        this.setMoney(newMoney);
-        this.getMoneyText().setText("Money: "+String.valueOf(newMoney));
-
-        System.out.println(this.getMoney());
+        int currentMoney = this.getMoney();
+        if (currentMoney > 0){
+            int newMoney = this.getMoney() - price;
+            this.setMoney(newMoney);
+            this.getMoneyText().setText("Money: "+String.valueOf(newMoney));
+            System.out.println(this.getMoney());
+        }
+        if (currentMoney <= 0) {
+            this.setMoney(0);
+            this.getMoneyText().setText("Money: "+String.valueOf(0));
+            Text errorMoney = this.createText("Not enough money", 1000, 700);
+            this.getPane().getChildren().add(errorMoney);
+        }
     }
 
     private Text createText(String sentence, int X, int Y) {
