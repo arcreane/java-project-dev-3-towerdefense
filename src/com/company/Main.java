@@ -5,12 +5,15 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Main extends Application {
     List<Units> enemies = new ArrayList<>();
@@ -26,6 +29,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         try {
 
+            Scanner scanner = new Scanner(System.in);
             FXMLLoader loader = new FXMLLoader();
             URL url = new File("src/com/company/view/MapView.fxml").toURI().toURL();
             loader.setLocation(url);
@@ -33,23 +37,30 @@ public class Main extends Application {
             this.root = new BorderPane();
             this.root.getChildren().add(loader.load());
 
+            System.out.print("Enter your name: ");
+            String username = scanner.next();
+            System.out.print("Welcome " + username);
+
+            User player = new User(this.root, 200, username);
+
             this.scene = new Scene(this.root, 1500, 800);
             primaryStage.setTitle("8bitTowerDefenseUltraEditionFightUltimateAlpha");
             primaryStage.setScene(this.scene);
             primaryStage.show();
             this.gameRunning = true;
-            this.startGameLoop(this.root);
+            this.startGameLoop(player, this.root);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private void startGameLoop(BorderPane pane) {
+    private void startGameLoop(User player, BorderPane pane) {
         final long[] lastTimer = {System.currentTimeMillis()};
         final int[] countLoop = {0};
-        User user = new User(200);
 
         AnimationTimer gameLoop = new AnimationTimer() {
+
+            public boolean continueGameLoop = true;
 
             @Override
             public void handle(long now) {
@@ -62,9 +73,16 @@ public class Main extends Application {
                 }
 
 
-                enemies.forEach(enemy ->{
-                    enemy.move();
+                enemies.forEach(enemy -> {
+                    int attack = enemy.move();
+                    if (attack != 0) {
+                       this.continueGameLoop = player.receiveDmg(attack);
+                    }
                 });
+
+                if (!this.continueGameLoop) {
+                    this.stop();
+                }
 
             }
 

@@ -153,7 +153,6 @@ public class Units {
     }
 
     /**
-     *
      * @return
      */
     public int move() {
@@ -164,19 +163,29 @@ public class Units {
         if (X > 900) {                                  //←
             this.setPositionX(X - this.getSpeed());
         } else if (Y < 650 && (X <= 900 && X > 650)) {  //↓
+            this.getImageView().setRotate(-90);
             this.setPositionY(Y + this.getSpeed());
         } else if (Y >= 650 && X > 650) {               //←
+            this.getImageView().setRotate(0);
             this.setPositionX(X - this.getSpeed());
         } else if (X <= 650 && Y > 450) {               //↑
+            this.getImageView().setRotate(90);
             this.setPositionY(Y - this.getSpeed());
         } else if (Y <= 450 && X > 375) {               //←
+            this.getImageView().setRotate(0);
             this.setPositionX(X - this.getSpeed());
         } else if (X <= 375 && Y > 220) {               //↑
+            this.getImageView().setRotate(90);
             this.setPositionY(Y - this.getSpeed());
         } else {                                        //←
+            this.getImageView().setRotate(0);
             this.setPositionX(X - this.getSpeed());
+        }
+
+        if (X > 0 && X < 5) {
             dmg = this.getDmg();
         }
+
         this.getImageView().relocate(this.getPositionX(), this.getPositionY());
         return dmg;
     }
