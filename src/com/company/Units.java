@@ -12,6 +12,7 @@ public class Units {
     /**
      * Default constructor
      */
+
     public Image assets;
     private String name;
     private int hp;
@@ -23,13 +24,6 @@ public class Units {
     private ImageView imageView;
     private BorderPane pane;
 
-    /**
-     *
-     * @param pane map of the game
-     * @param locationX position x of image view
-     * @param locationY position y of image view
-     * @param type type of unit
-     */
     public Units(BorderPane pane, int locationX, int locationY, String type) {
 
         switch (type) {
@@ -47,140 +41,70 @@ public class Units {
         this.addToPane(pane, locationX, locationY);
     }
 
-    /**
-     *
-     * @return get imageView of unit
-     */
     public ImageView getImageView() {
         return imageView;
     }
 
-    /**
-     *
-     * @param imageView set imageView of unit
-     */
     public void setImageView(ImageView imageView) {
         this.imageView = imageView;
     }
 
-    /**
-     *
-     * @return get pane of map
-     */
     public BorderPane getPane() {
         return pane;
     }
 
-    /**
-     *
-     * @param pane set pane of map
-     */
     public void setPane(BorderPane pane) {
         this.pane = pane;
     }
 
-    /**
-     *
-     * @return get assets of unit
-     */
     public Image getAssets() {
         return assets;
     }
 
-    /**
-     *
-     * @param assets set assets of sprite
-     */
     public void setAssets(Image assets) {
         this.assets = assets;
     }
 
-    /**
-     *
-     * @return get name of unit
-     */
     public String getName() {
         return name;
     }
 
-    /**
-     *
-     * @param name set name of unit
-     */
     public void setName(String name) {
         this.name = name;
     }
 
-    /**
-     *
-     * @return get hp of unit
-     */
     public int getHp() {
         return hp;
     }
 
-    /**
-     *
-     * @param hp set hp of unit
-     */
     public void setHp(int hp) {
         this.hp = hp;
     }
 
-    /**
-     *
-     * @return get dmg of unit
-     */
     public int getDmg() {
         return dmg;
     }
 
-    /**
-     *
-     * @param dmg set dmg of unit
-     */
     public void setDmg(int dmg) {
         this.dmg = dmg;
     }
 
-    /**
-     *
-     * @return get speed of unit
-     */
     public int getSpeed() {
         return speed;
     }
 
-    /**
-     *
-     * @param speed set speed of unit
-     */
     public void setSpeed(int speed) {
         this.speed = speed;
     }
 
-    /**
-     *
-     * @return get worth of unit
-     */
     public int getWorth() {
         return worth;
     }
 
-    /**
-     *
-     * @param worth set worth of unit
-     */
     public void setWorth(int worth) {
         this.worth = worth;
     }
 
-    /**
-     *
-     * @param pane  map of the game
-     * @param locationX position x of image view
-     * @param locationY position y of image view
-     */
     private void addToPane(BorderPane pane, int locationX, int locationY) {
         this.setImageView(new ImageView(this.getAssets()));
         this.getImageView().relocate(locationX, locationY);
@@ -194,10 +118,6 @@ public class Units {
 
     }
 
-    /**
-     *
-     * @param type of unit
-     */
     private void constructRogue(String type) {
         this.setAssets(new Image("com/company/tiles/towerDefense_tile248.png"));
         this.setName(type);
@@ -206,10 +126,7 @@ public class Units {
         this.setSpeed(3);
         this.setWorth(15);
     }
-    /**
-     *
-     * @param type of unit
-     */
+
     private void constructWar(String type) {
         this.setAssets(new Image("com/company/tiles/towerDefense_tile247.png"));
         this.setName(type);
@@ -218,10 +135,7 @@ public class Units {
         this.setSpeed(1);
         this.setWorth(25);
     }
-    /**
-     *
-     * @param type of unit
-     */
+
     private void constructMage(String type) {
         this.setAssets(new Image("com/company/tiles/towerDefense_tile246.png"));
         this.setName(type);
@@ -233,7 +147,6 @@ public class Units {
 
     /**
      *
-     * @return dmg of unit
      */
     public int attack() {
         return this.dmg;
@@ -277,34 +190,18 @@ public class Units {
         return dmg;
     }
 
-    /**
-     *
-     * @return get positionY of unit
-     */
     public int getPositionY() {
         return positionY;
     }
 
-    /**
-     *
-     * @param positionY set positionY of unit
-     */
     public void setPositionY(int positionY) {
         this.positionY = positionY;
     }
 
-    /**
-     *
-     * @return get positionX of unit
-     */
     public int getPositionX() {
         return positionX;
     }
 
-    /**
-     *
-     * @param positionX set positionX of unit
-     */
     public void setPositionX(int positionX) {
         this.positionX = positionX;
     }
