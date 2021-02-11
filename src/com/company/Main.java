@@ -12,7 +12,6 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -79,14 +78,14 @@ public class Main extends Application {
 
                     enemies.removeIf(enemy -> enemy.getHp() == 0);
                     enemies.forEach(enemy -> {
-                            enemy.receiveDmg(25);
+                        enemy.receiveDmg(25);
                     });
                 }
 
                 enemies.forEach(enemy -> {
                     int attack = enemy.move();
                     if (attack != 0) {
-                       this.continueGameLoop = player.receiveDmg(attack);
+                        this.continueGameLoop = player.receiveDmg(attack);
                     }
                 });
 
@@ -100,7 +99,7 @@ public class Main extends Application {
         gameLoop.start();
     }
 
-    private Text createText(String sentence, int X, int Y){
+    private Text createText(String sentence, int X, int Y) {
         Text text = new Text();
         text.setText(sentence);
         text.setFont(Font.font("Verdana", 20));
