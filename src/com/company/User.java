@@ -2,6 +2,7 @@ package com.company;
 
 import javafx.scene.Group;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
@@ -9,7 +10,6 @@ import javafx.scene.text.Text;
  *
  */
 public class User {
-
     private int hp;
     private String pseudo;
     private int money;
@@ -17,7 +17,6 @@ public class User {
     private Text hpText;
     private BorderPane pane;
     private Text pseudoText;
-
     /**
      * Default constructor
      */
@@ -26,6 +25,20 @@ public class User {
         this.setHp(hp);
         this.setPseudo(pseudo);
         this.createUserInterface(pane, hp, pseudo);
+    }
+
+    public static String upperCaseFirst(String val) {
+        char[] arr = val.toCharArray();
+        arr[0] = Character.toUpperCase(arr[0]);
+        return new String(arr);
+    }
+
+    public Text getMoneyText() {
+        return moneyText;
+    }
+
+    public void setMoneyText(Text moneyText) {
+        this.moneyText = moneyText;
     }
 
     public int getHp() {
@@ -47,31 +60,30 @@ public class User {
     private void createUserInterface(BorderPane pane, int hp, String pseudo) {
         Group root = new Group();
 
-        Text hpTextText = this.createText(String.valueOf(hp), 50, 70);
-        Text pseudoTextText = this.createText(pseudo, 50, 50);
+        Text hpTextText = this.createText("Hp: "+String.valueOf(hp), 50, 70);
+        Text pseudoTextText = this.createText(upperCaseFirst(pseudo), 50, 50);
 
+        Text userMoney = this.createText(String.valueOf("Money: " +this.getMoney()),50,90);
+
+        hpTextText.setFill(Color.RED);
+        userMoney.setFill(Color.GOLD);
+
+        this.setMoneyText(userMoney);
         this.setHpText(hpTextText);
         this.setPseudoText(pseudoTextText);
 
         root.getChildren().add(pseudoTextText);
         root.getChildren().add(hpTextText);
-
+        root.getChildren().add(userMoney);
         pane.getChildren().add(root);
 
         this.setPane(pane);
     }
 
-    public static String upperCaseFirst(String val) {
-        char[] arr = val.toCharArray();
-        arr[0] = Character.toUpperCase(arr[0]);
-        return new String(arr);
-    }
-
-    public void buyTower(int price)
-    {
+    public void buyTower(int price) {
         int newMoney = this.getMoney() - price;
         this.setMoney(newMoney);
-        this.getMoneyText().setText("Money: "+String.valueOf(newMoney));
+        this.getMoneyText().setText("Money: " + newMoney);
 
         System.out.println(this.getMoney());
     }
@@ -127,7 +139,7 @@ public class User {
     public boolean receiveDmg(int dmg) {
         int hp = this.getHp() - dmg;
         this.setHp(hp);
-        this.getHpText().setText(String.valueOf(hp));
+        this.getHpText().setText("Hp: "+String.valueOf(hp));
 
         if (hp <= 0) {
             Text GameOver = this.createText("GAME OVER", 1000, 600);
