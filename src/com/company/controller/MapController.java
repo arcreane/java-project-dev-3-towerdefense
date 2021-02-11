@@ -3,10 +3,14 @@ package com.company.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import com.company.model.MapModel;
 
@@ -22,6 +26,10 @@ public class MapController implements Initializable {
         return this.paneDeLaCarte;
     }
 
+    public Pane paneEntite;
+
+    public Pane getPane(){return this.paneEntite;}
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         chargerMap();
@@ -36,7 +44,6 @@ public class MapController implements Initializable {
                     case 343:
                         generate("com/company/tiles/towerDefense_tile003.png");
                         break;
-
                     case 389:
                         generate("com/company/tiles/towerDefense_tile025.png");
                         break;
@@ -70,10 +77,7 @@ public class MapController implements Initializable {
                     case 44:
                         generate("com/company/tiles/TowerDefense_tile044.png");
                         break;
-
-
                 }
-
             }
         }
     }
@@ -86,6 +90,8 @@ public class MapController implements Initializable {
         caseObstacle.setImage(obstacle);
         paneDeLaCarte.getChildren().add(caseObstacle);
     }
+
+
 
     public MapModel getMap() {
         return this.model;
