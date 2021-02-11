@@ -2,8 +2,10 @@ package com.company;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -66,7 +68,8 @@ public class Main extends Application {
                             rifle.getImageView().setRotate(180);
                             break;
                         case 3:
-                            new Tower(root, third[0], third[1], "rocket");
+                           Tower rocket = new Tower(root, third[0], third[1], "rocket");
+                           rocket.getImageView().setRotate(245);
                             break;
                     }
                     step++;
