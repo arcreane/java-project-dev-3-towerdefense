@@ -49,10 +49,6 @@ public class Main extends Application {
             int[] second = new int[]{990, 150};
             int[] first = new int[]{1300, 385};
             int[] third = new int[]{1050, 595};
-            //int[] second = new int[]{ 990,150};
-            //int[] second = new int[]{ 990,150};
-            //int[] second = new int[]{ 990,150};
-            //int[] second = new int[]{ 990,150};
 
             EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
                 @Override
