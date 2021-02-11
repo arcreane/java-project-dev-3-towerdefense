@@ -66,12 +66,11 @@ public class Main extends Application {
             public void handle(long now) {
                 if (System.currentTimeMillis() - lastTimer[0] >= 1000) {
                     String[] type = {"rogue", "war", "mage"};
-                    Units mage = countLoop[0] % 2 == 0 ? new Units(pane, 1445, 240, type[(int) (Math.random() * ((2) + 1))]) : new Units(pane, 1445, 290, type[(int) (Math.random() * ((2) + 1))]);
-                    enemies.add(mage);
+                    Units unit = countLoop[0] % 2 == 0 ? new Units(pane, 1445, 240, type[(int) (Math.random() * ((2) + 1))]) : new Units(pane, 1445, 290, type[(int) (Math.random() * ((2) + 1))]);
+                    enemies.add(unit);
                     lastTimer[0] += 1000;
                     countLoop[0]++;
                 }
-
 
                 enemies.forEach(enemy -> {
                     int attack = enemy.move();

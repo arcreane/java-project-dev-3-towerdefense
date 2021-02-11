@@ -153,7 +153,7 @@ public class Units {
     }
 
     /**
-     * @return
+     * @return dmg if units arrived to the end of the map
      */
     public int move() {
         int X = this.getPositionX();
