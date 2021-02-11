@@ -24,9 +24,15 @@ public class Tower {
 
     public Tower(BorderPane pane, int locationX, int locationY, String type) {
         switch (type) {
-            case "rocket" -> this.constructRocket(type);
-            case "drone" -> this.constructDrone(type);
-            case "rifle" -> this.constructRifle(type);
+            case "rocket":
+                this.constructRocket(type);
+                break;
+            case "drone":
+                this.constructDrone(type);
+                break;
+            case "rifle":
+                this.constructRifle(type);
+                break;
         }
 
         this.addToPane(pane, locationX, locationY);
