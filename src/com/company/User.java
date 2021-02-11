@@ -23,6 +23,7 @@ public class User {
     public User(BorderPane pane, int hp, String pseudo) {
         this.setPane(pane);
         this.setHp(hp);
+        this.setMoney(100);
         this.setPseudo(pseudo);
         this.createUserInterface(pane, hp, pseudo);
     }
@@ -60,10 +61,10 @@ public class User {
     private void createUserInterface(BorderPane pane, int hp, String pseudo) {
         Group root = new Group();
 
-        Text hpTextText = this.createText("Hp: "+String.valueOf(hp), 50, 70);
+        Text hpTextText = this.createText("Hp: "+ hp, 50, 70);
         Text pseudoTextText = this.createText(upperCaseFirst(pseudo), 50, 50);
 
-        Text userMoney = this.createText(String.valueOf("Money: " +this.getMoney()),50,90);
+        Text userMoney = this.createText("Money: " + this.getMoney(),50,90);
 
         hpTextText.setFill(Color.RED);
         userMoney.setFill(Color.GOLD);
