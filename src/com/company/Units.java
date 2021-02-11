@@ -205,4 +205,15 @@ public class Units {
     public void setPositionX(int positionX) {
         this.positionX = positionX;
     }
+
+    public int receiveDmg(int dmg) {
+        int hp = this.getHp() - dmg;
+        this.setHp(hp);
+//        this.getHpText().setText(String.valueOf(hp));
+        if (hp <= 0) {
+            this.getPane().getChildren().remove(imageView);
+            return this.getWorth();
+        }
+        return 0;
+    }
 }

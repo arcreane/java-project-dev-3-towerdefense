@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -70,6 +71,11 @@ public class Main extends Application {
                     enemies.add(mage);
                     lastTimer[0] += 1000;
                     countLoop[0]++;
+
+                    enemies.removeIf(enemy -> enemy.getHp() == 0);
+                    enemies.forEach(enemy -> {
+                            enemy.receiveDmg(25);
+                    });
                 }
 
 
