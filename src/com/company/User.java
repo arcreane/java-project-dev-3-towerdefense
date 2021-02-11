@@ -6,41 +6,40 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
+import java.awt.*;
+
 /**
  *
  */
 public class User {
-    private int hp;
-    private String pseudo;
+
+    public int hp;
+    public String pseudo;
     private int money;
+    /**
+     *
+     */
     private Text moneyText;
     private Text hpText;
+    /**
+     *
+     */
     private BorderPane pane;
     private Text pseudoText;
+
     /**
      * Default constructor
      */
     public User(BorderPane pane, int hp, String pseudo) {
         this.setPane(pane);
         this.setHp(hp);
-        this.setMoney(100);
         this.setPseudo(pseudo);
+        this.setMoney(100);
         this.createUserInterface(pane, hp, pseudo);
     }
+    public void setMoneyText(Text moneyText) { this.moneyText = moneyText; }
 
-    public static String upperCaseFirst(String val) {
-        char[] arr = val.toCharArray();
-        arr[0] = Character.toUpperCase(arr[0]);
-        return new String(arr);
-    }
-
-    public Text getMoneyText() {
-        return moneyText;
-    }
-
-    public void setMoneyText(Text moneyText) {
-        this.moneyText = moneyText;
-    }
+    public Text getMoneyText() { return moneyText; }
 
     public int getHp() {
         return hp;
@@ -61,10 +60,10 @@ public class User {
     private void createUserInterface(BorderPane pane, int hp, String pseudo) {
         Group root = new Group();
 
-        Text hpTextText = this.createText("Hp: "+ hp, 50, 70);
+        Text hpTextText = this.createText("Hp: "+String.valueOf(hp), 50, 70);
         Text pseudoTextText = this.createText(upperCaseFirst(pseudo), 50, 50);
 
-        Text userMoney = this.createText("Money: " + this.getMoney(),50,90);
+        Text userMoney = this.createText(String.valueOf("Money: " +this.getMoney()),50,90);
 
         hpTextText.setFill(Color.RED);
         userMoney.setFill(Color.GOLD);
@@ -81,20 +80,29 @@ public class User {
         this.setPane(pane);
     }
 
-    public void buyTower(int price) {
-        int newMoney = this.getMoney() - price;
-        this.setMoney(newMoney);
-        this.getMoneyText().setText("Money: " + newMoney);
-
-        System.out.println(this.getMoney());
+    public static String upperCaseFirst(String val) {
+        char[] arr = val.toCharArray();
+        arr[0] = Character.toUpperCase(arr[0]);
+        return new String(arr);
     }
 
-    /**
-     * @param sentence String containing the sentence that will be display
-     * @param X        Int position X of the Text
-     * @param Y        Int position Y of the Text
-     * @return Text containing the sentence
-     */
+    public void buyTower(int price)
+    {
+        int currentMoney = this.getMoney();
+        if (currentMoney > 0){
+            int newMoney = this.getMoney() - price;
+            this.setMoney(newMoney);
+            this.getMoneyText().setText("Money: "+String.valueOf(newMoney));
+            System.out.println(this.getMoney());
+        }
+        if (currentMoney <= 0) {
+            this.setMoney(0);
+            this.getMoneyText().setText("Money: "+String.valueOf(0));
+            Text errorMoney = this.createText("Not enough money", 1000, 700);
+            this.getPane().getChildren().add(errorMoney);
+        }
+    }
+
     private Text createText(String sentence, int X, int Y) {
         Text text = new Text();
         text.setText(sentence);
