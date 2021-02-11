@@ -2,8 +2,10 @@ package com.company;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -42,7 +44,12 @@ public class Main extends Application {
             System.out.print("Welcome " + username);
 
             User player = new User(this.root, 200, username);
-
+            Tower drone = new Tower(this.root, 600, 30, "drone");
+            this.root.getChildren().add(createText("100", 610, 110));
+            Tower rifle = new Tower(this.root, 660, 30, "rifle");
+            this.root.getChildren().add(createText("50", 680, 110));
+            Tower rocket = new Tower(this.root, 730, 30, "rocket");
+            this.root.getChildren().add(createText("100", 740, 110));
             this.scene = new Scene(this.root, 1500, 800);
             primaryStage.setTitle("8bitTowerDefenseUltraEditionFightUltimateAlpha");
             primaryStage.setScene(this.scene);
@@ -87,5 +94,14 @@ public class Main extends Application {
 
         };
         gameLoop.start();
+    }
+
+    private Text createText(String sentence, int X, int Y){
+        Text text = new Text();
+        text.setText(sentence);
+        text.setFont(Font.font("Verdana", 20));
+        text.setX(X);
+        text.setY(Y);
+        return text;
     }
 }

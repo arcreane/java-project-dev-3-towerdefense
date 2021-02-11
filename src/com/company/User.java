@@ -11,18 +11,15 @@ import javafx.scene.text.Text;
 public class User {
 
     private int hp;
-    private int money;
     private String pseudo;
-    private BorderPane pane;
+    private int money;
+    private Text moneyText;
     private Text hpText;
+    private BorderPane pane;
     private Text pseudoText;
 
     /**
      * Default constructor
-     *
-     * @param pane   PlayerScreen
-     * @param hp     player hp
-     * @param pseudo player username
      */
     public User(BorderPane pane, int hp, String pseudo) {
         this.setPane(pane);
@@ -31,30 +28,18 @@ public class User {
         this.createUserInterface(pane, hp, pseudo);
     }
 
-    /**
-     * @return player current hp
-     */
     public int getHp() {
         return hp;
     }
 
-    /**
-     * @param hp set player hp
-     */
     public void setHp(int hp) {
         this.hp = hp;
     }
 
-    /**
-     * @return player current pseudo
-     */
     public String getPseudo() {
         return pseudo;
     }
 
-    /**
-     * @param pseudo set player pseudo
-     */
     public void setPseudo(String pseudo) {
         this.pseudo = pseudo;
     }
@@ -76,6 +61,21 @@ public class User {
         this.setPane(pane);
     }
 
+    public static String upperCaseFirst(String val) {
+        char[] arr = val.toCharArray();
+        arr[0] = Character.toUpperCase(arr[0]);
+        return new String(arr);
+    }
+
+    public void buyTower(int price)
+    {
+        int newMoney = this.getMoney() - price;
+        this.setMoney(newMoney);
+        this.getMoneyText().setText("Money: "+String.valueOf(newMoney));
+
+        System.out.println(this.getMoney());
+    }
+
     /**
      * @param sentence String containing the sentence that will be display
      * @param X        Int position X of the Text
@@ -92,66 +92,38 @@ public class User {
         return text;
     }
 
-    /**
-     * @return BorderPane
-     */
     public BorderPane getPane() {
         return pane;
     }
 
-    /**
-     * @param pane set the screen play
-     */
     public void setPane(BorderPane pane) {
         this.pane = pane;
     }
 
-    /**
-     * @return int current player's money
-     */
     public int getMoney() {
         return money;
     }
 
-    /**
-     * @param money set player's money
-     */
     public void setMoney(int money) {
         this.money = money;
     }
 
-    /**
-     * @return Text current player's name
-     */
     public Text getPseudoText() {
         return pseudoText;
     }
 
-    /**
-     * @param pseudoText Text set player's pseudo Text
-     */
     public void setPseudoText(Text pseudoText) {
         this.pseudoText = pseudoText;
     }
 
-    /**
-     * @return Text current player's hp text
-     */
     public Text getHpText() {
         return hpText;
     }
 
-    /**
-     * @param hpText Text of hp player
-     */
     public void setHpText(Text hpText) {
         this.hpText = hpText;
     }
 
-    /**
-     * @param dmg Amount of dmg that the player receives
-     * @return boolean if the player's hp fall to 0 or lower
-     */
     public boolean receiveDmg(int dmg) {
         int hp = this.getHp() - dmg;
         this.setHp(hp);
